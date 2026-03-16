@@ -1,35 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chase Morgan | Resume</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; }
-    h1, h2 { margin-bottom: 8px; }
-    .muted { color: #555; }
-    a { text-decoration: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chase Morgan | Software Developer</title>
+<style>
+:root{
+  --accent:#2563eb;
+  --accent-2:#1d4ed8;
+  --text:#111827;
+  --muted:#6b7280;
+  --bg:#f8fafc;
+  --card:#ffffff;
+  --line:#e5e7eb;
+  --soft:#eff6ff;
+  --shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+body.dark{
+  --accent:#60a5fa;
+  --accent-2:#93c5fd;
+  --text:#f3f4f6;
+  --muted:#9ca3af;
+  --bg:#0b1220;
+  --card:#111827;
+  --line:#1f2937;
+  --soft:#0f172a;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+  background:linear-gradient(180deg,var(--bg),var(--soft));
+  color:var(--text);
+  line-height:1.6;
+  transition:background .25s ease,color .25s ease;
+}
+
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.container{
+  max-width:1080px;
+  margin:auto;
+  padding:28px 20px 48px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.brand{
+  font-weight:700;
+  letter-spacing:.02em;
+}
+
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  align-items:center;
+}
+
+.nav a{
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+.toggle{
+  border:1px solid var(--line);
+  background:var(--card);
+  color:var(--text);
+  border-radius:999px;
+  padding:10px 14px;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+}
+
+.hero{
+  display:grid;
+  grid-template-columns:1.4fr .9fr;
+  gap:22px;
+  margin-bottom:22px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+
+.hero-main{
+  padding:34px;
+}
+
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  color:var(--accent);
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.9rem;
+  margin-bottom:16px;
+}
+
+h1{
+  font-size:3rem;
+  line-height:1.05;
+  margin:0 0 10px;
+}
+
+.subtitle{
+  color:var(--muted);
+  font-size:1.08rem;
+  margin-bottom:18px;
+  max-width:62ch;
+}
+
+.contact{
+  color:var(--muted);
+  margin-bottom:18px;
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:22px;
+}
+
+.button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border-radius:14px;
+  padding:12px 18px;
+  font-weight:600;
+  border:1px solid transparent;
+}
+
+.button.primary{
+  background:var(--accent);
+  color:white;
+}
+.button.primary:hover{text-decoration:none;background:var(--accent-2)}
+
+.button.secondary{
+  background:transparent;
+  color:var(--text);
+  border-color:var(--line);
+}
+.button.secondary:hover{text-decoration:none;background:var(--soft)}
+
+.hero-side{
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.stat{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+  background:linear-gradient(180deg,var(--card),var(--soft));
+}
+
+.stat strong{
+  display:block;
+  font-size:1.35rem;
+}
+
+.section{
+  padding:26px;
+  margin-bottom:20px;
+}
+
+.section h2{
+  margin:0 0 16px;
+  font-size:1rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted);
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:22px;
+}
+
+.skills{
+  display:grid;
+  grid-template-columns:170px 1fr;
+  gap:10px 16px;
+}
+
+.badges,
+.cert-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.badge{
+  display:inline-block;
+  background:var(--soft);
+  color:var(--text);
+  border:1px solid var(--line);
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:.88rem;
+}
+
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+
+.project-card{
+  overflow:hidden;
+}
+
+.project-shot{
+  aspect-ratio:16/9;
+  background:linear-gradient(135deg,#dbeafe,#bfdbfe 55%,#93c5fd);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#1e3a8a;
+  font-weight:700;
+  letter-spacing:.03em;
+}
+
+body.dark .project-shot{
+  background:linear-gradient(135deg,#0f172a,#1e293b 55%,#334155);
+  color:#bfdbfe;
+}
+
+.project-body{
+  padding:18px;
+}
+
+.project-body h3{
+  margin:0 0 6px;
+  font-size:1.1rem;
+}
+
+.subhead{
+  color:var(--muted);
+  font-size:.92rem;
+  margin-bottom:10px;
+}
+
+ul{margin:10px 0 0 18px;padding:0}
+li{margin-bottom:6px}
+
+.link-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:14px;
+}
+
+.mini-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  color:var(--text);
+}
+.mini-link:hover{text-decoration:none}
+
+.timeline-item{
+  padding:0 0 18px 16px;
+  border-left:2px solid var(--line);
+  position:relative;
+}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-item::before{
+  content:"";
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--accent);
+  position:absolute;
+  left:-6px;
+  top:8px;
+}
+
+.footer{
+  text-align:center;
+  color:var(--muted);
+  padding:14px 0 6px;
+  font-size:.92rem;
+}
+
+@media (max-width:900px){
+  .hero,
+  .about-grid,
+  .projects-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:700px){
+  h1{font-size:2.25rem}
+  .skills{grid-template-columns:1fr}
+  .topbar{align-items:flex-start;flex-direction:column}
+  .nav{gap:10px}
+  .hero-main,.hero-side,.section{padding:20px}
+}
+</style>
 </head>
 <body>
-  <h1>Chase Morgan</h1>
-  <p class="muted">Junior Android Developer | Kotlin | Jetpack Compose</p>
+<div class="container">
+  <div class="topbar">
+    <div class="brand">Chase Morgan</div>
+    <div class="nav">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <button class="toggle" id="themeToggle" aria-label="Toggle dark mode">🌙 Dark mode</button>
+    </div>
+  </div>
 
-  <h2>About</h2>
-  <p>I build Android apps with Kotlin and Jetpack Compose, including a restaurant POS project.</p>
+  <section class="hero">
+    <div class="card hero-main">
+      <div class="kicker">Open to Junior Software Developer & Android Developer roles</div>
+      <h1>Software Developer building practical, user-focused applications.</h1>
+      <div class="subtitle">
+        Entry-level developer with hands-on experience building Android, desktop, and web applications using Java, Kotlin, Python, JavaScript, and SQL. Strong technical foundation backed by leadership experience, a Software Engineering degree, and a focus on clean, reliable solutions.
+      </div>
+      <div class="contact" id="contact">
+        Rosenberg, TX • <a href="mailto:ChaseMorgan333@gmail.com">ChaseMorgan333@gmail.com</a><br>
+        <a href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub</a> •
+        <a href="https://chasemorgan333.github.io/Resume/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+      </div>
+      <div class="hero-actions">
+        <a class="button primary" href="#projects">View Projects</a>
+        <a class="button secondary" href="mailto:ChaseMorgan333@gmail.com">Contact Me</a>
+      </div>
+    </div>
 
-  <h2>Projects</h2>
-  <ul>
-    <li><strong>Restaurant POS App</strong> – Android tablet ordering and kitchen display workflow</li>
-    <li><strong>Other Project</strong> – Short description</li>
-  </ul>
+    <div class="card hero-side">
+      <div class="stat-grid">
+        <div class="stat"><strong>2</strong>Degrees</div>
+        <div class="stat"><strong>2</strong>Certifications</div>
+        <div class="stat"><strong>5+</strong>Core Languages</div>
+        <div class="stat"><strong>Android</strong>Project Focus</div>
+      </div>
+    </div>
+  </section>
 
-  <h2>Skills</h2>
-  <p>Kotlin, Jetpack Compose, Android, Git, GitHub</p>
+  <section class="card section" id="about">
+    <h2>About</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          I’m a software developer with a background in software engineering and hands-on experience creating Android and web applications. My work emphasizes practical problem-solving, clean organization, and building software that is intuitive for real users.
+        </p>
+        <p>
+          In addition to technical experience, I bring leadership from managing restaurant operations in a fast-paced environment, which strengthened my communication, prioritization, and process improvement skills.
+        </p>
+      </div>
+      <div>
+        <div class="skills">
+          <strong>Languages</strong>
+          <div class="badges">
+            <span class="badge">Java</span>
+            <span class="badge">Kotlin</span>
+            <span class="badge">Python</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">SQL</span>
+          </div>
 
-  <h2>Links</h2>
-  <p>
-    <a href="https://github.com/yourusername">GitHub</a>
-  </p>
+          <strong>Web</strong>
+          <div class="badges">
+            <span class="badge">HTML</span>
+            <span class="badge">CSS</span>
+          </div>
+
+          <strong>Tools</strong>
+          <div class="badges">
+            <span class="badge">Git</span>
+            <span class="badge">Android Studio</span>
+            <span class="badge">SQLite</span>
+            <span class="badge">Room</span>
+          </div>
+
+          <strong>Concepts</strong>
+          <div class="badges">
+            <span class="badge">OOP</span>
+            <span class="badge">Agile</span>
+            <span class="badge">SDLC</span>
+            <span class="badge">Mobile Development</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section" id="projects">
+    <h2>Featured Projects</h2>
+    <div class="projects-grid">
+      <article class="card project-card">
+        <div class="project-shot">Vacation Planner App Screenshot Placeholder</div>
+        <div class="project-body">
+          <h3>Vacation Planner Mobile Application</h3>
+          <div class="subhead">Java • Android • SQLite • Room</div>
+          <ul>
+            <li>Developed an Android mobile application for planning and tracking vacations.</li>
+            <li>Implemented MVVM architecture with persistent storage using SQLite and Room ORM.</li>
+            <li>Built interfaces for managing trips, accommodations, and travel activities.</li>
+            <li>Created software design documentation including wireframes, class diagrams, and ER diagrams.</li>
+          </ul>
+          <div class="link-row">
+            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            <a class="mini-link" href="https://chasemorgan333.github.io/Resume/" target="_blank" rel="noopener noreferrer">Live Portfolio</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project-card">
+        <div class="project-shot">Portfolio Website Screenshot Placeholder</div>
+        <div class="project-body">
+          <h3>Personal Portfolio Website</h3>
+          <div class="subhead">HTML • CSS • JavaScript</div>
+          <ul>
+            <li>Designed and built a responsive website to showcase development projects.</li>
+            <li>Implemented modern layout techniques and JavaScript interactivity.</li>
+            <li>Created a professional web presence for portfolio and resume hosting.</li>
+          </ul>
+          <div class="link-row">
+            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            <a class="mini-link" href="https://chasemorgan333.github.io/Resume/" target="_blank" rel="noopener noreferrer">Live Site</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project-card">
+        <div class="project-shot">Restaurant POS Project Placeholder</div>
+        <div class="project-body">
+          <h3>Restaurant POS System</h3>
+          <div class="subhead">Kotlin • Android • Jetpack Compose</div>
+          <ul>
+            <li>Developing a tablet-based POS interface for restaurant servers.</li>
+            <li>Designing workflows that support ticket entry and kitchen display integration.</li>
+            <li>Building responsive layouts for portrait and landscape tablet use.</li>
+          </ul>
+          <div class="link-row">
+            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            <a class="mini-link" href="#contact">Ask for Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project-card">
+        <div class="project-shot">Add Your Next Project Here</div>
+        <div class="project-body">
+          <h3>Next Featured Project</h3>
+          <div class="subhead">Add another strong app, API project, or full-stack build</div>
+          <ul>
+            <li>This slot is ready for another project as your portfolio grows.</li>
+            <li>Replace this card with a live app, backend, or desktop project.</li>
+            <li>Including a fourth project will make your portfolio look even stronger.</li>
+          </ul>
+          <div class="link-row">
+            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="card section" id="experience">
+    <h2>Experience</h2>
+    <div class="timeline-item">
+      <h3>Assistant Manager</h3>
+      <div class="subhead">ACG Texas IHOP — Jan 2020 to Present</div>
+      <ul>
+        <li>Manage daily restaurant operations including scheduling, budgeting, inventory control, and customer service.</li>
+        <li>Train and supervise employees to maintain high service standards and operational efficiency.</li>
+        <li>Monitor labor and food costs to meet corporate financial goals.</li>
+        <li>Implemented process improvements that increased efficiency and team productivity.</li>
+        <li>Ensure compliance with corporate and health department regulations.</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <h3>E-Commerce Associate</h3>
+      <div class="subhead">Kroger — Dec 2017 to Mar 2018</div>
+      <ul>
+        <li>Processed and fulfilled online grocery orders using Kroger's BayMax system.</li>
+        <li>Maintained order accuracy while selecting products across store departments.</li>
+        <li>Assisted customers with pickup and resolved service issues.</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <h3>Assistant Recruiter</h3>
+      <div class="subhead">MIT Professionals — Jun 2016 to Mar 2017</div>
+      <ul>
+        <li>Sourced candidates for professional and technical roles.</li>
+        <li>Maintained applicant tracking databases and candidate pipelines.</li>
+        <li>Supported senior recruiters in hiring initiatives.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="card section" id="education">
+    <h2>Education & Certifications</h2>
+    <div class="timeline-item">
+      <h3>B.S. Software Engineering</h3>
+      <div class="subhead">Western Governors University — February 2026</div>
+    </div>
+    <div class="timeline-item">
+      <h3>AAS Software Development</h3>
+      <div class="subhead">Houston Community College — May 2022</div>
+    </div>
+    <div class="cert-list" style="margin-top:14px;">
+      <span class="badge">CompTIA Project+</span>
+      <span class="badge">AWS Certified Cloud Practitioner</span>
+    </div>
+  </section>
+
+  <div class="footer">
+    Built by Chase Morgan • Ready for GitHub Pages
+  </div>
+</div>
+
+<script>
+(function () {
+  const toggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark');
+    toggle.textContent = '☀️ Light mode';
+  }
+
+  toggle.addEventListener('click', function () {
+    document.body.classList.toggle('dark');
+    const dark = document.body.classList.contains('dark');
+    localStorage.setItem('theme', dark ? 'dark' : 'light');
+    toggle.textContent = dark ? '☀️ Light mode' : '🌙 Dark mode';
+  });
+})();
+</script>
 </body>
 </html>
