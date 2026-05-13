@@ -231,6 +231,10 @@ h1{
   font-size:.88rem;
 }
 
+.project-status{
+  margin:10px 0 12px;
+}
+
 .projects-grid{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -250,11 +254,167 @@ h1{
   color:#1e3a8a;
   font-weight:700;
   letter-spacing:.03em;
+  text-align:center;
+  padding:18px;
+}
+
+.project-shot img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 body.dark .project-shot{
   background:linear-gradient(135deg,#0f172a,#1e293b 55%,#334155);
   color:#bfdbfe;
+}
+
+
+/* Screenshot carousel */
+.carousel{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+  background:var(--soft);
+}
+
+.carousel-main{
+  position:relative;
+  aspect-ratio:16/9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+
+.carousel-main img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.carousel-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  border:1px solid rgba(255,255,255,.45);
+  background:rgba(15,23,42,.72);
+  color:white;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.35rem;
+  line-height:1;
+  backdrop-filter:blur(8px);
+}
+
+.carousel-btn:hover{
+  background:rgba(15,23,42,.9);
+}
+
+.carousel-btn.prev{left:12px}
+.carousel-btn.next{right:12px}
+
+.carousel-caption{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 14px;
+  color:var(--muted);
+  font-size:.9rem;
+  border-top:1px solid var(--line);
+  background:var(--card);
+}
+
+.carousel-counter{
+  white-space:nowrap;
+  color:var(--accent);
+  font-weight:700;
+}
+
+.carousel-thumbs{
+  display:flex;
+  gap:8px;
+  padding:10px;
+  overflow-x:auto;
+  background:var(--card);
+}
+
+.carousel-thumb{
+  flex:0 0 72px;
+  aspect-ratio:16/9;
+  border:2px solid transparent;
+  border-radius:10px;
+  overflow:hidden;
+  padding:0;
+  cursor:pointer;
+  background:var(--soft);
+  opacity:.72;
+}
+
+.carousel-thumb.active{
+  border-color:var(--accent);
+  opacity:1;
+}
+
+.carousel-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:rgba(2,6,23,.88);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+
+.lightbox.open{display:flex}
+
+.lightbox-content{
+  max-width:min(1100px,96vw);
+  max-height:88vh;
+}
+
+.lightbox-content img{
+  max-width:100%;
+  max-height:80vh;
+  border-radius:16px;
+  box-shadow:0 24px 70px rgba(0,0,0,.45);
+  display:block;
+}
+
+.lightbox-caption{
+  color:white;
+  text-align:center;
+  margin-top:12px;
+}
+
+.lightbox-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(15,23,42,.75);
+  color:white;
+  width:44px;
+  height:44px;
+  border-radius:999px;
+  font-size:1.35rem;
+  cursor:pointer;
 }
 
 .project-body{
@@ -270,6 +430,19 @@ body.dark .project-shot{
   color:var(--muted);
   font-size:.92rem;
   margin-bottom:10px;
+}
+
+.learning-block{
+  margin-top:14px;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--soft);
+}
+
+.learning-block strong{
+  display:block;
+  margin-bottom:6px;
 }
 
 ul{margin:10px 0 0 18px;padding:0}
@@ -318,6 +491,21 @@ li{margin-bottom:6px}
   font-size:.92rem;
 }
 
+.headshot-wrap{
+  display:flex;
+  justify-content:center;
+  margin-bottom:20px;
+}
+
+.headshot{
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:50%;
+  border:4px solid var(--accent);
+  box-shadow:var(--shadow);
+}
+
 @media (max-width:900px){
   .hero,
   .about-grid,
@@ -354,7 +542,7 @@ li{margin-bottom:6px}
       <div class="kicker">Open to Junior Software Developer & Android Developer roles</div>
       <h1>Software Developer building practical, user-focused applications.</h1>
       <div class="subtitle">
-        Entry-level developer with hands-on experience building Android, desktop, and web applications using Java, Kotlin, Python, JavaScript, and SQL. Strong technical foundation backed by leadership experience, a Software Engineering degree, and a focus on clean, reliable solutions.
+        Entry-level developer with hands-on experience building Android, desktop, and web applications using Java, Kotlin, Python, JavaScript, and SQL. I focus on clean architecture, practical workflows, persistent data, and user-focused software backed by real project experience.
       </div>
       <div class="contact" id="contact">
         Rosenberg, TX • <a href="mailto:ChaseMorgan333@gmail.com">ChaseMorgan333@gmail.com</a><br>
@@ -368,12 +556,35 @@ li{margin-bottom:6px}
     </div>
 
     <div class="card hero-side">
+      <div class="headshot-wrap">
+      <img
+        src="images/headshot.jpg"
+        alt="Chase Morgan headshot"
+        class="headshot"
+      >
+    </div>
       <div class="stat-grid">
         <div class="stat"><strong>2</strong>Degrees</div>
         <div class="stat"><strong>2</strong>Certifications</div>
         <div class="stat"><strong>5+</strong>Core Languages</div>
         <div class="stat"><strong>Android</strong>Project Focus</div>
       </div>
+    </div>
+  </section>
+
+  <section class="card section">
+    <h2>Technical Highlights</h2>
+    <div class="badges">
+      <span class="badge">Jetpack Compose</span>
+      <span class="badge">MVVM Architecture</span>
+      <span class="badge">Room / SQLite</span>
+      <span class="badge">Android Development</span>
+      <span class="badge">State Management</span>
+      <span class="badge">Repository Pattern</span>
+      <span class="badge">Responsive Tablet UI</span>
+      <span class="badge">Java Algorithms</span>
+      <span class="badge">Git & GitHub</span>
+      <span class="badge">Agile Development</span>
     </div>
   </section>
 
@@ -385,7 +596,7 @@ li{margin-bottom:6px}
           I’m a software developer with a background in software engineering and hands-on experience creating Android and web applications. My work emphasizes practical problem-solving, clean organization, and building software that is intuitive for real users.
         </p>
         <p>
-          In addition to technical experience, I bring leadership from managing restaurant operations in a fast-paced environment, which strengthened my communication, prioritization, and process improvement skills.
+          In addition to technical experience, I bring leadership from managing restaurant operations in a fast-paced environment, which strengthened my communication, prioritization, and process improvement skills. That operations background also informs my interest in building restaurant and business workflow software.
         </p>
       </div>
       <div>
@@ -408,14 +619,19 @@ li{margin-bottom:6px}
           <strong>Tools</strong>
           <div class="badges">
             <span class="badge">Git</span>
+            <span class="badge">GitHub</span>
             <span class="badge">Android Studio</span>
             <span class="badge">SQLite</span>
             <span class="badge">Room</span>
+            <span class="badge">Gradle</span>
           </div>
 
           <strong>Concepts</strong>
           <div class="badges">
             <span class="badge">OOP</span>
+            <span class="badge">MVVM</span>
+            <span class="badge">Repository Pattern</span>
+            <span class="badge">State Management</span>
             <span class="badge">Agile</span>
             <span class="badge">SDLC</span>
             <span class="badge">Mobile Development</span>
@@ -428,51 +644,47 @@ li{margin-bottom:6px}
   <section class="card section" id="projects">
     <h2>Featured Projects</h2>
     <div class="projects-grid">
-      <article class="card project-card">
-        <div class="project-shot">Vacation Planner App Screenshot Placeholder</div>
-        <div class="project-body">
-          <h3>Vacation Planner Mobile Application</h3>
-          <div class="subhead">Java • Android • SQLite • Room</div>
-          <ul>
-            <li>Developed an Android mobile application for planning and tracking vacations.</li>
-            <li>Implemented MVVM architecture with persistent storage using SQLite and Room ORM.</li>
-            <li>Built interfaces for managing trips, accommodations, and travel activities.</li>
-            <li>Created software design documentation including wireframes, class diagrams, and ER diagrams.</li>
-          </ul>
-          <div class="link-row">
-            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
-            <a class="mini-link" href="https://chasemorgan333.github.io/Resume/" target="_blank" rel="noopener noreferrer">Live Portfolio</a>
-          </div>
-        </div>
-      </article>
 
       <article class="card project-card">
-        <div class="project-shot">Portfolio Website Screenshot Placeholder</div>
-        <div class="project-body">
-          <h3>Personal Portfolio Website</h3>
-          <div class="subhead">HTML • CSS • JavaScript</div>
-          <ul>
-            <li>Designed and built a responsive website to showcase development projects.</li>
-            <li>Implemented modern layout techniques and JavaScript interactivity.</li>
-            <li>Created a professional web presence for portfolio and resume hosting.</li>
-          </ul>
-          <div class="link-row">
-            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
-            <a class="mini-link" href="https://chasemorgan333.github.io/Resume/" target="_blank" rel="noopener noreferrer">Live Site</a>
+        <div class="carousel" data-carousel="pos">
+          <div class="carousel-main" data-lightbox-trigger aria-label="Open Restaurant POS screenshot gallery">
+            <img src="images/pos/pos-1.png" alt="Restaurant POS login screen" data-carousel-image>
+            <button class="carousel-btn prev" type="button" data-carousel-prev aria-label="Previous POS screenshot">‹</button>
+            <button class="carousel-btn next" type="button" data-carousel-next aria-label="Next POS screenshot">›</button>
           </div>
+          <div class="carousel-caption">
+            <span data-carousel-caption>Server login screen</span>
+            <span class="carousel-counter" data-carousel-counter>1 / 8</span>
+          </div>
+          <div class="carousel-thumbs" data-carousel-thumbs aria-label="Restaurant POS screenshot thumbnails"></div>
         </div>
-      </article>
-
-      <article class="card project-card">
-        <div class="project-shot">Restaurant POS Project Placeholder</div>
         <div class="project-body">
           <h3>Restaurant POS System</h3>
-          <div class="subhead">Kotlin • Android • Jetpack Compose</div>
+          <div class="subhead">Kotlin • Android • Jetpack Compose • Room • MVVM</div>
+          <div class="badges project-status">
+            <span class="badge">In Active Development</span>
+            <span class="badge">Tablet UI</span>
+            <span class="badge">Offline-First Planning</span>
+          </div>
           <ul>
-            <li>Developing a tablet-based POS interface for restaurant servers.</li>
-            <li>Designing workflows that support ticket entry and kitchen display integration.</li>
-            <li>Building responsive layouts for portrait and landscape tablet use.</li>
+            <li>Building a tablet-based Android POS system using Kotlin, Jetpack Compose, Room, and MVVM architecture.</li>
+            <li>Implemented restaurant workflows including draft/open checks, item state management, and reactive UI updates using ViewModels and Flows.</li>
+            <li>Designed reusable UI components including order panels, menu panels, headers, footers, and payment workflow components.</li>
+            <li>Developed responsive layouts for portrait and landscape tablet usage in real restaurant environments.</li>
+            <li>Currently expanding the application with backend planning, KDS integration concepts, and improved business workflow handling.</li>
           </ul>
+
+          <div class="learning-block">
+            <strong>What I Learned</strong>
+            <ul>
+              <li>Managing complex UI state with Jetpack Compose and ViewModels.</li>
+              <li>Structuring Android applications using repositories and Room persistence.</li>
+              <li>Designing reusable Compose components for larger applications.</li>
+              <li>Modeling real-world restaurant workflows and business logic.</li>
+              <li>Debugging navigation, persistence, and state-management issues.</li>
+            </ul>
+          </div>
+
           <div class="link-row">
             <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
             <a class="mini-link" href="#contact">Ask for Demo</a>
@@ -481,15 +693,101 @@ li{margin-bottom:6px}
       </article>
 
       <article class="card project-card">
-        <div class="project-shot">Add Your Next Project Here</div>
+        <div class="project-shot">
+          Replace with Vacation Planner Screenshot
+        </div>
         <div class="project-body">
-          <h3>Next Featured Project</h3>
-          <div class="subhead">Add another strong app, API project, or full-stack build</div>
+          <h3>Vacation Planner Mobile Application</h3>
+          <div class="subhead">Java • Android • SQLite • Room • MVVM</div>
+          <div class="badges project-status">
+            <span class="badge">Android App</span>
+            <span class="badge">Local Database</span>
+            <span class="badge">Academic Project</span>
+          </div>
           <ul>
-            <li>This slot is ready for another project as your portfolio grows.</li>
-            <li>Replace this card with a live app, backend, or desktop project.</li>
-            <li>Including a fourth project will make your portfolio look even stronger.</li>
+            <li>Developed an Android mobile application for planning and tracking vacations, trips, accommodations, and activities.</li>
+            <li>Implemented MVVM architecture with persistent storage using SQLite and Room ORM.</li>
+            <li>Built user interfaces for adding, editing, and viewing travel-related information.</li>
+            <li>Created software design documentation including wireframes, class diagrams, and ER diagrams.</li>
           </ul>
+
+          <div class="learning-block">
+            <strong>What I Learned</strong>
+            <ul>
+              <li>Building Android applications with persistent local data.</li>
+              <li>Organizing app structure with models, database entities, and UI workflows.</li>
+              <li>Creating planning documentation before implementation.</li>
+            </ul>
+          </div>
+
+          <div class="link-row">
+            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            <a class="mini-link" href="#contact">Ask for Demo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project-card">
+        <div class="project-shot">
+          Replace with Portfolio Website Screenshot
+        </div>
+        <div class="project-body">
+          <h3>Personal Portfolio Website</h3>
+          <div class="subhead">HTML • CSS • JavaScript • GitHub Pages</div>
+          <div class="badges project-status">
+            <span class="badge">Responsive Design</span>
+            <span class="badge">Live Site</span>
+            <span class="badge">GitHub Pages</span>
+          </div>
+          <ul>
+            <li>Designed and built a responsive portfolio website to showcase development projects, experience, education, and contact information.</li>
+            <li>Implemented modern layout techniques, reusable CSS styling, and JavaScript-powered dark mode.</li>
+            <li>Created a professional web presence for portfolio and resume hosting using GitHub Pages.</li>
+          </ul>
+
+          <div class="learning-block">
+            <strong>What I Learned</strong>
+            <ul>
+              <li>Structuring a complete personal portfolio page.</li>
+              <li>Using CSS variables, responsive layouts, and reusable design styles.</li>
+              <li>Publishing and maintaining a live website with GitHub Pages.</li>
+            </ul>
+          </div>
+
+          <div class="link-row">
+            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            <a class="mini-link" href="https://chasemorgan333.github.io/Resume/" target="_blank" rel="noopener noreferrer">Live Site</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project-card">
+        <div class="project-shot">
+          Spring Boot Backend API Project
+        </div>
+        <div class="project-body">
+          <h3>Backend API Project</h3>
+          <div class="subhead">Java • Spring Boot • REST API • SQL</div>
+          <div class="badges project-status">
+            <span class="badge">In Progress</span>
+            <span class="badge">REST API</span>
+            <span class="badge">Backend Development</span>
+          </div>
+          <ul>
+            <li>Currently building backend development skills using Java, Spring Boot, REST APIs, and SQL database concepts.</li>
+            <li>Learning API architecture, request handling, layered backend structure, and database integration.</li>
+            <li>Planned as a future backend foundation for restaurant POS functionality and mobile application integration.</li>
+          </ul>
+
+          <div class="learning-block">
+            <strong>What I Am Learning</strong>
+            <ul>
+              <li>Designing RESTful endpoints for application data.</li>
+              <li>Separating controller, service, repository, and model layers.</li>
+              <li>Connecting backend systems to mobile and client applications.</li>
+            </ul>
+          </div>
+
           <div class="link-row">
             <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
           </div>
@@ -543,10 +841,19 @@ li{margin-bottom:6px}
   </div>
 </div>
 
+<div class="lightbox" id="imageLightbox" aria-hidden="true">
+  <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Close screenshot preview">×</button>
+  <div class="lightbox-content">
+    <img src="" alt="Expanded project screenshot" id="lightboxImage">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
 <script>
 (function () {
   const toggle = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('theme');
+
   if (savedTheme === 'dark') {
     document.body.classList.add('dark');
     toggle.textContent = '☀️ Light mode';
@@ -559,6 +866,156 @@ li{margin-bottom:6px}
     toggle.textContent = dark ? '☀️ Light mode' : '🌙 Dark mode';
   });
 })();
+
+(function () {
+  const galleries = {
+    pos: [
+      {
+        src: 'images/pos/pos-1.png',
+        alt: 'Restaurant POS login screen',
+        caption: 'Server login screen'
+      },
+      {
+        src: 'images/pos/pos-2.png',
+        alt: 'Restaurant POS dining room table layout',
+        caption: 'Dining room table management'
+      },
+      {
+        src: 'images/pos/pos-3.png',
+        alt: 'Restaurant POS order entry screen',
+        caption: 'Order entry and check panel workflow'
+      },
+      {
+        src: 'images/pos/pos-4.png',
+        alt: 'Restaurant POS menu category screen',
+        caption: 'Menu categories and item selection'
+      },
+      {
+        src: 'images/pos/pos-5.png',
+        alt: 'Restaurant POS payment screen',
+        caption: 'Payment and check workflow'
+      },
+      {
+        src: 'images/pos/pos-6.png',
+        alt: 'Restaurant POS draft and open check workflow',
+        caption: 'Draft and open check state handling'
+      },
+      {
+        src: 'images/pos/pos-7.png',
+        alt: 'Restaurant POS responsive tablet layout',
+        caption: 'Tablet-focused responsive layout'
+      },
+      {
+        src: 'images/pos/pos-8.png',
+        alt: 'Restaurant POS additional workflow screen',
+        caption: 'Additional POS workflow screen'
+      }
+    ]
+  };
+
+  const lightbox = document.getElementById('imageLightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(item) {
+    lightboxImage.src = item.src;
+    lightboxImage.alt = item.alt;
+    lightboxCaption.textContent = item.caption;
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightboxImage.src = '';
+  }
+
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', closeLightbox);
+  }
+
+  if (lightbox) {
+    lightbox.addEventListener('click', function (event) {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
+      closeLightbox();
+    }
+  });
+
+  document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+    const galleryName = carousel.getAttribute('data-carousel');
+    const items = galleries[galleryName] || [];
+    if (!items.length) return;
+
+    let currentIndex = 0;
+
+    const image = carousel.querySelector('[data-carousel-image]');
+    const caption = carousel.querySelector('[data-carousel-caption]');
+    const counter = carousel.querySelector('[data-carousel-counter]');
+    const prev = carousel.querySelector('[data-carousel-prev]');
+    const next = carousel.querySelector('[data-carousel-next]');
+    const thumbs = carousel.querySelector('[data-carousel-thumbs]');
+    const lightboxTrigger = carousel.querySelector('[data-lightbox-trigger]');
+
+    function render() {
+      const item = items[currentIndex];
+      image.src = item.src;
+      image.alt = item.alt;
+      caption.textContent = item.caption;
+      counter.textContent = `${currentIndex + 1} / ${items.length}`;
+
+      thumbs.querySelectorAll('.carousel-thumb').forEach(function (thumb, index) {
+        thumb.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    items.forEach(function (item, index) {
+      const button = document.createElement('button');
+      button.className = 'carousel-thumb';
+      button.type = 'button';
+      button.setAttribute('aria-label', 'Show screenshot ' + (index + 1));
+
+      const thumbImage = document.createElement('img');
+      thumbImage.src = item.src;
+      thumbImage.alt = item.alt;
+
+      button.appendChild(thumbImage);
+      button.addEventListener('click', function () {
+        currentIndex = index;
+        render();
+      });
+
+      thumbs.appendChild(button);
+    });
+
+    prev.addEventListener('click', function (event) {
+      event.stopPropagation();
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      render();
+    });
+
+    next.addEventListener('click', function (event) {
+      event.stopPropagation();
+      currentIndex = (currentIndex + 1) % items.length;
+      render();
+    });
+
+    lightboxTrigger.addEventListener('click', function () {
+      openLightbox(items[currentIndex]);
+    });
+
+    render();
+  });
+})();
+
 </script>
 </body>
 </html>
