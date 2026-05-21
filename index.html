@@ -712,9 +712,48 @@ li{margin-bottom:6px}
       </article>
 
       <article class="card project-card">
-        <div class="project-shot">
-          Replace with Vacation Planner Screenshot
-        </div>
+  <div class="carousel" data-carousel="vacation">
+    <div
+      class="carousel-main"
+      data-lightbox-trigger
+      aria-label="Open Vacation Planner screenshot gallery"
+    >
+      <img
+        src="images/vacation-planner/vacation-1.png"
+        alt="Vacation Planner home screen"
+        data-carousel-image
+      >
+
+      <button
+        class="carousel-btn prev"
+        type="button"
+        data-carousel-prev
+        aria-label="Previous Vacation Planner screenshot"
+      >
+        ‹
+      </button>
+
+      <button
+        class="carousel-btn next"
+        type="button"
+        data-carousel-next
+        aria-label="Next Vacation Planner screenshot"
+      >
+        ›
+      </button>
+    </div>
+
+    <div class="carousel-caption">
+      <span data-carousel-caption>Vacation list screen</span>
+      <span class="carousel-counter" data-carousel-counter>1 / 6</span>
+    </div>
+
+    <div
+      class="carousel-thumbs"
+      data-carousel-thumbs
+      aria-label="Vacation Planner screenshot thumbnails"
+    ></div>
+  </div>
         <div class="project-body">
           <h3>Vacation Planner Mobile Application</h3>
           <div class="subhead">Java • Android • SQLite • Room • MVVM</div>
@@ -735,7 +774,10 @@ li{margin-bottom:6px}
             <ul>
               <li>Building Android applications with persistent local data.</li>
               <li>Organizing app structure with models, database entities, and UI workflows.</li>
-              <li>Creating planning documentation before implementation.</li>
+              <li>Creating planning documentation/wireframes before implementation.</li>
+              <li>Storing BLOB image files taken with Android in a database</li>
+              <li>Android Activity Lifecycle</li>
+              <li>Android Services/Notifications</li>
             </ul>
           </div>
 
@@ -782,7 +824,9 @@ li{margin-bottom:6px}
 
       <article class="card project-card">
         <div class="project-shot">
-          Spring Boot Backend API Project
+          <img
+           src="images/employees-JSON.png"
+           alt="Employees JSON">
         </div>
         <div class="project-body">
           <h3>Backend API Project</h3>
@@ -795,7 +839,7 @@ li{margin-bottom:6px}
           <ul>
             <li>Currently building backend development skills using Java, Spring Boot, REST APIs, and SQL database concepts.</li>
             <li>Learning API architecture, request handling, layered backend structure, and database integration.</li>
-            <li>Planned as a future backend foundation for restaurant POS functionality and mobile application integration.</li>
+            <li>Currently integrating as a future backend foundation for restaurant POS functionality and mobile application integration.</li>
           </ul>
 
           <div class="learning-block">
@@ -808,7 +852,7 @@ li{margin-bottom:6px}
           </div>
 
           <div class="link-row">
-            <a class="mini-link" href="https://github.com/chasemorgan333" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+            <a class="mini-link" href="https://github.com/chasemorgan333/POSbackend" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
           </div>
         </div>
       </article>
@@ -929,7 +973,70 @@ li{margin-bottom:6px}
         alt: 'Restaurant POS Cash Payment Entry',
         caption: 'Cash payment and change calculation'
       }
-    ]
+    ],
+    
+    vacation: [
+  {
+    src: "images/vacationplanner2.0/figure1.png",
+    alt: "Login Settings Link",
+    caption: "Login Settings Link"
+  },
+  {
+    src: "images/vacationplanner2.0/figure2.png",
+    alt: "Login Settings Screen",
+    caption: "Login Settings screen"
+  },
+  {
+    src: "images/vacationplanner2.0/figure3.png",
+    alt: "Login Failed",
+    caption: "Login Failed"
+  },
+  {
+    src: "images/vacationplanner2.0/figure4.png",
+    alt: "Adding Vacations",
+    caption: "Adding Vacations"
+  },
+  {
+    src: "images/vacationplanner2.0/figure5.png",
+    alt: "Vacation Menu",
+    caption: "Vacation Menu"
+  },
+  {
+    src: "images/vacationplanner2.0/figure6.png",
+    alt: "Add Excursions",
+    caption: "Add Excursions"
+  },
+  {
+    src: "images/vacationplanner2.0/figure7.png",
+    alt: "Excursion Menu",
+    caption: "Excursion Menu"
+  },
+  {
+    src: "images/vacationplanner2.0/figure8.png",
+    alt: "Packing List Add Items",
+    caption: "Packing List Add Items"
+  },
+  {
+    src: "images/vacationplanner2.0/figure9.png",
+    alt: "Packing List Search Items",
+    caption: "Packing List Search Items"
+  },
+  {
+    src: "images/vacationplanner2.0/figure10.png",
+    alt: "Packing List Search By Category",
+    caption: "Packing List Search By Category"
+  },
+  {
+    src: "images/vacationplanner2.0/figure11.png",
+    alt: "Photo Gallery Edit Title/Caption",
+    caption: "Photo Gallery Edit Title/Caption"
+  },
+  {
+    src: "images/vacationplanner2.0/figure12.png",
+    alt: "Photo Gallery Page",
+    caption: "Photo Gallery Page"
+  }
+]
   };
 
   const lightbox = document.getElementById('imageLightbox');
