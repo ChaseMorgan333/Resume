@@ -432,6 +432,32 @@ body.dark .project-shot{
   cursor:pointer;
 }
 
+.lightbox-nav{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.75);
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.lightbox-prev{
+  left: 20px;
+}
+
+.lightbox-next{
+  right: 20px;
+}
+
+.lightbox-nav:hover{
+  background: rgba(15, 23, 42, 0.95);
+}
+
 .project-body{
   padding:18px;
 }
@@ -999,10 +1025,12 @@ li{margin-bottom:6px}
 
 <div class="lightbox" id="imageLightbox" aria-hidden="true">
   <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Close screenshot preview">×</button>
+  <button class = "lightbox-nav lightbox-prev" type="button" id="lightboxPrev" aria-label="Previous Screenshot"><</button>
   <div class="lightbox-content">
     <img src="" alt="Expanded project screenshot" id="lightboxImage">
     <div class="lightbox-caption" id="lightboxCaption"></div>
   </div>
+  <button class="lightbox-nav lightbox-next" type="button" id="lightboxNext" aria-label="Next screenshot">></button>
 </div>
 
 <script>
