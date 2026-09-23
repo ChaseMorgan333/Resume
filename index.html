@@ -1187,11 +1187,51 @@ li{margin-bottom:6px}
   const lightboxImage = document.getElementById('lightboxImage');
   const lightboxCaption = document.getElementById('lightboxCaption');
   const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById("lightboxPrev");
+  const lightboxNext = document.getElementById("lightboxNext");
 
-  function openLightbox(item) {
+  let lightboxItems = [];
+  let lightboxIndex = 0;
+
+  function renderLightbox(){
+    const item = lightboxItems[lightboxIndex];
+
     lightboxImage.src = item.src;
     lightboxImage.alt = item.alt;
-    lightboxCaption.textContent = item.caption;
+    lightboxCaption.textContent = `${item.caption} - ${lightboxIndex + 1} / ${lightboxItems.length}`;
+  }
+
+  function showPreviousLightboxImage() {
+  lightboxIndex =
+    (lightboxIndex - 1 + lightboxItems.length) %
+    lightboxItems.length;
+
+  renderLightbox();
+}
+
+function showNextLightboxImage() {
+  lightboxIndex =
+    (lightboxIndex + 1) % lightboxItems.length;
+
+  renderLightbox();
+}
+
+lightboxPrev.addEventListener("click", function (event) {
+  event.stopPropagation();
+  showPreviousLightboxImage();
+});
+
+lightboxNext.addEventListener("click", function (event) {
+  event.stopPropagation();
+  showNextLightboxImage();
+});
+
+  function openLightbox(items, index) {
+    lightboxItems = items;
+    lightboxIndex = index;
+
+    renderLightbox();
+
     lightbox.classList.add('open');
     lightbox.setAttribute('aria-hidden', 'false');
   }
@@ -1214,11 +1254,17 @@ li{margin-bottom:6px}
     });
   }
 
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
-      closeLightbox();
-    }
-  });
+  document.addEventListener("keydown", function (event) {
+  if (!lightbox.classList.contains("open")) return;
+
+  if (event.key === "Escape") {
+    closeLightbox();
+  } else if (event.key === "ArrowLeft") {
+    showPreviousLightboxImage();
+  } else if (event.key === "ArrowRight") {
+    showNextLightboxImage();
+  }
+});
 
   document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
     const galleryName = carousel.getAttribute('data-carousel');
@@ -1279,7 +1325,7 @@ li{margin-bottom:6px}
     });
 
     lightboxTrigger.addEventListener('click', function () {
-      openLightbox(items[currentIndex]);
+      openLightbox(items, currentIndex);
     });
 
     render();
